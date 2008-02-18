@@ -9,29 +9,9 @@ use Tie::RefHash::Weak;
 use POE;
 use Algorithm::TokenBucket;
 
-has alias => (
-	isa => "Str",
-	is  => "ro",
-	lazy => 1,
-	default => sub { overload::StrVal(shift) },
-);
+with qw(MooseX::POE::Aliased);
 
-sub shutdown {
-	my $self = shift;
-	$poe_kernel->call( $self->get_session_id, "_shutdown" );
-}
-
-event _shutdown => sub {
-	my ( $self, $kernel ) = @_[OBJECT, KERNEL];
-
-	$kernel->alias_remove( $_ ) for $kernel->alias_list();
-};
-
-sub START {
-	my $self = shift;
-
-	$poe_kernel->alias_set($self->alias);
-}
+sub shutdown { shift->clear_alias }
 
 has token_bucket => (
 	isa => "Algorithm::TokenBucket",
@@ -165,7 +145,7 @@ This is useful for rate limiting of jobs in a time based way.
 
 The POE alias for the internal session.
 
-Defaults to the C<overload::StrVal> of the object.
+Comes from L<MooseX::POE::Aliased>.
 
 The alias can be set explicitly but is not yet useful for anything (there is no
 POE side API for this object, all session states are internal).
