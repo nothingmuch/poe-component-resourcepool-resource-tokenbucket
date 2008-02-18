@@ -10,7 +10,7 @@ use POE;
 use Algorithm::TokenBucket;
 
 has alias => (
-	isa => "Str|Undef",
+	isa => "Str",
 	is  => "ro",
 	lazy => 1,
 	default => sub { overload::StrVal(shift) },
