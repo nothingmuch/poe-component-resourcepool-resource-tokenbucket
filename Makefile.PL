@@ -5,8 +5,8 @@ use strict;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-	NAME         => '',
-	VERSION_FROM => '',
+	NAME         => 'POE::Component::ResourcePool::Resource::TokenBucket',
+	VERSION_FROM => 'lib/POE/Component/ResourcePool/Resource/TokenBucket.pm',
 	INSTALLDIRS  => 'site',
 	SIGN         => 1,
 	PL_FILES     => { },
