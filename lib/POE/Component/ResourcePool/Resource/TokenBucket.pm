@@ -9,6 +9,8 @@ use Tie::RefHash::Weak;
 use POE;
 use Algorithm::TokenBucket;
 
+our $VERSION = "0.01";
+
 with qw(MooseX::POE::Aliased);
 
 sub shutdown { shift->clear_alias }
