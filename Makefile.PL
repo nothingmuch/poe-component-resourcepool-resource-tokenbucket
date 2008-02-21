@@ -12,8 +12,9 @@ WriteMakefile(
 	PL_FILES     => { },
 	PREREQ_PM    => {
 		'Test::use::ok' => 0,
-		'Algorithm::TokenBucket' => '0.3', # until method
+		'Algorithm::TokenBucket' => '0.32', # until method
 		'POE::Component::ResourcePool' => 0,
+		'MooseX::POE' => '0.08'
 	},
 );
 
